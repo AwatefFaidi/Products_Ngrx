@@ -8,7 +8,11 @@ import {
   GetAllProductsActionSuccess, GetSelectedProductsActionError,
   GetSelectedProductsActionSuccess,
   ProductsActions,
-  ProductsActionsTypes
+  ProductsActionsTypes,
+  SearchProductsActionError,
+  SearchProductsActionSuccess,
+  SelectProductActionError,
+  SelectProductActionSuccess
 } from './products.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators';
 
@@ -31,14 +35,42 @@ export class ProductsEffects {
   );
 
   /* Get Selected Products*/
-  getSelectedProductsEffect:Observable<Action>=createEffect(
+  getSelectedProductsEffect:Observable<ProductsActions>=createEffect(
     ()=>this.effectActions.pipe(
       ofType(ProductsActionsTypes.GET_SELECTED_PRODUCTS),
-      mergeMap((action)=>{
+      mergeMap((action:ProductsActions)=>{
         return this.productService.getSelectedProducts()
           .pipe(
             map((products)=> new GetSelectedProductsActionSuccess(products)),
             catchError((err)=>of(new GetSelectedProductsActionError(err.message)))
+          )
+      })
+    )
+  );
+
+   /* Search Products*/
+   SearchProductsEffect:Observable<ProductsActions>=createEffect(
+    ()=>this.effectActions.pipe(
+      ofType(ProductsActionsTypes.SEARCH_PRODUCTS),
+      mergeMap((action:ProductsActions)=>{
+        return this.productService.searchProducts(action.payload)
+          .pipe(
+            map((products)=> new SearchProductsActionSuccess(products)),
+            catchError((err)=>of(new SearchProductsActionError(err.message)))
+          )
+      })
+    )
+  );
+
+  /* Select Product*/
+  SelectProductEffect:Observable<ProductsActions>=createEffect(
+    ()=>this.effectActions.pipe(
+      ofType(ProductsActionsTypes.SELECT_PRODUCT),
+      mergeMap((action:ProductsActions)=>{
+        return this.productService.setSelected(action.payload)
+          .pipe(
+            map((product)=> new SelectProductActionSuccess(product)),
+            catchError((err)=>of(new SelectProductActionError(err.message)))
           )
       })
     )

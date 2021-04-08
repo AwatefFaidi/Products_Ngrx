@@ -35,6 +35,26 @@ export function productsReducer(state=initState, action:Action):ProductsState {
       return {...state, dataState:ProductsStateEnum.LOADED, products:(<ProductsActions>action).payload}
     case ProductsActionsTypes.GET_SELECTED_PRODUCTS_ERROR:
       return {...state, dataState:ProductsStateEnum.ERROR, errorMessage:(<ProductsActions>action).payload}
+    
+    /* Search Products*/
+    case ProductsActionsTypes.SEARCH_PRODUCTS:
+      return {...state, dataState:ProductsStateEnum.LOADING}
+    case ProductsActionsTypes.SEARCH_PRODUCTS_SUCCESS:
+      return {...state, dataState:ProductsStateEnum.LOADED, products:(<ProductsActions>action).payload}
+    case ProductsActionsTypes.SEARCH_PRODUCTS_ERROR:
+      return {...state, dataState:ProductsStateEnum.ERROR, errorMessage:(<ProductsActions>action).payload}
+
+      /* Select Product*/
+    case ProductsActionsTypes.SELECT_PRODUCT:
+      return {...state, dataState:ProductsStateEnum.LOADING}
+    case ProductsActionsTypes.SELECT_PRODUCT_SUCCESS:
+      // copy state in listproduct( state not allowed to change) 
+      let product: Product=(<ProductsActions>action).payload;
+      let listproduct=[...state.products];
+      let data:Product[]=listproduct.map(p=>p.id==product.id?product:p);
+      return {...state, dataState:ProductsStateEnum.LOADED, products:data}
+    case ProductsActionsTypes.SEARCH_PRODUCTS_ERROR:
+      return {...state, dataState:ProductsStateEnum.ERROR, errorMessage:(<ProductsActions>action).payload}
     default : return {...state}
   }
 }

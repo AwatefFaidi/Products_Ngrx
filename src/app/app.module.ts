@@ -13,6 +13,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { productsReducer } from './ngrx/products.reducer';
 import { ProductsEffects } from './ngrx/products.effects';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { ProductsEffects } from './ngrx/products.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     StoreModule.forRoot({catalogState:productsReducer}),
     EffectsModule.forRoot([ProductsEffects]),
     StoreDevtoolsModule.instrument()

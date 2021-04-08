@@ -17,16 +17,11 @@ export class ProductsComponent implements OnInit {
   constructor(private store:Store<any>) { }
 
   ngOnInit(): void {
-    /*
+   
     this.productsState$=this.store.pipe(
       map((state)=>  state.catalogState)
-    );*/
+    );
+    
   }
-  onGetAllProducts() {
-    this.store.dispatch(new GetAllProductsAction({}))
-  }
-
-  onGetSelectedProducts() {
-    this.store.dispatch(new GetSelectedProductsAction({}))
-  }
+  
 }
