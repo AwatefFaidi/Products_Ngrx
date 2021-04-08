@@ -26,6 +26,16 @@ export enum ProductsActionsTypes{
      DELETE_PRODUCT="[Product] Delete product",
      DELETE_PRODUCT_SUCCESS="[Product] Delete product Success",
      DELETE_PRODUCT_ERROR="[Product] Delete product Error",
+
+     /* New product*/
+     NEW_PRODUCT="[Product] New product",
+     NEW_PRODUCT_SUCCESS="[Product] New product Success",
+     NEW_PRODUCT_ERROR="[Product] New product Error",
+
+     /* Saveproduct*/
+     SAVE_PRODUCT="[Product] Save product",
+     SAVE_PRODUCT_SUCCESS="[Product] Save product Success",
+     SAVE_PRODUCT_ERROR="[Product] Save product Error",
   }
 
   /* Get all Products Actions*/
@@ -129,11 +139,54 @@ export enum ProductsActionsTypes{
     }
 
   }
+  /* New Product Actions*/
+
+  export class NewProductAction implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.NEW_PRODUCT;
+    constructor(public payload:any) {
+    }
+  }
+
+  export class NewProductActionSuccess implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.NEW_PRODUCT_SUCCESS;
+    constructor(public payload:any) {
+      }
+  }
+
+  export class NewProductActionError implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.NEW_PRODUCT_ERROR;
+    constructor(public payload:string) {
+    }
+
+  }
+
+  /* Save Product Actions*/
+
+  export class SaveProductAction implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.SAVE_PRODUCT;
+    constructor(public payload:Product) {
+    }
+  }
+
+  export class SaveProductActionSuccess implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.SAVE_PRODUCT_SUCCESS;
+    constructor(public payload:Product) {
+      }
+  }
+
+  export class SaveProductActionError implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.SAVE_PRODUCT_ERROR;
+    constructor(public payload:string) {
+    }
+
+  }
 
   export type ProductsActions=
       GetAllProductsAction | GetAllProductsActionSuccess | GetAllProductsActionError |
       GetSelectedProductsAction | GetSelectedProductsActionSuccess | GetSelectedProductsActionError|
       SearchProductsAction |SearchProductsActionSuccess |SearchProductsActionError |
       SelectProductAction | SelectProductActionSuccess |SelectProductActionError |
-      DeleteProductAction | DeleteProductActionSuccess |DeleteProductActionError
+      DeleteProductAction | DeleteProductActionSuccess |DeleteProductActionError|
+      NewProductAction |NewProductActionSuccess |NewProductActionError |
+      SaveProductAction |SaveProductActionSuccess |SaveProductActionError
   ;

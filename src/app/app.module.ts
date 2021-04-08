@@ -14,6 +14,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { productsReducer } from './ngrx/products.reducer';
 import { ProductsEffects } from './ngrx/products.effects';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { NewProductComponent } from './components/products/new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     ProductsComponent,
     ProductListComponent,
     ProductItemComponent,
-    ProductsNavBarComponent
+    ProductsNavBarComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,

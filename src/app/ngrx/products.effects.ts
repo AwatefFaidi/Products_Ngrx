@@ -9,8 +9,12 @@ import {
   GetAllProductsActionError,
   GetAllProductsActionSuccess, GetSelectedProductsActionError,
   GetSelectedProductsActionSuccess,
+  NewProductActionError,
+  NewProductActionSuccess,
   ProductsActions,
   ProductsActionsTypes,
+  SaveProductActionError,
+  SaveProductActionSuccess,
   SearchProductsActionError,
   SearchProductsActionSuccess,
   SelectProductActionError,
@@ -92,4 +96,29 @@ export class ProductsEffects {
     )
   );
 
+  /* New Product*/
+ NewProductEffect:Observable<ProductsActions>=createEffect(
+    ()=>this.effectActions.pipe(
+      ofType(ProductsActionsTypes.NEW_PRODUCT),
+      map((action:ProductsActions)=>
+      {
+        // pas besoin de service puisque on ne recupere pas donnees
+        return new NewProductActionSuccess({});
+      })
+    )
+  );
+
+  /* Save Product*/
+ SaveProductEffect:Observable<ProductsActions>=createEffect(
+  ()=>this.effectActions.pipe(
+    ofType(ProductsActionsTypes.SAVE_PRODUCT),
+    mergeMap((action:ProductsActions)=>{
+      return this.productService.save(action.payload)
+        .pipe(
+          map((product)=> new SaveProductActionSuccess(product)),
+          catchError((err)=>of(new SaveProductActionError(err.message)))
+        )
+    })
+  )
+);
 }
