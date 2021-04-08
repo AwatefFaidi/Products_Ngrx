@@ -53,7 +53,20 @@ export function productsReducer(state=initState, action:Action):ProductsState {
       let listproduct=[...state.products];
       let data:Product[]=listproduct.map(p=>p.id==product.id?product:p);
       return {...state, dataState:ProductsStateEnum.LOADED, products:data}
-    case ProductsActionsTypes.SEARCH_PRODUCTS_ERROR:
+    case ProductsActionsTypes.SELECT_PRODUCT_ERROR:
+      return {...state, dataState:ProductsStateEnum.ERROR, errorMessage:(<ProductsActions>action).payload}
+
+       /* Delete Product*/
+    case ProductsActionsTypes.DELETE_PRODUCT:
+      return {...state, dataState:ProductsStateEnum.LOADING}
+    case ProductsActionsTypes.DELETE_PRODUCT_SUCCESS:
+      // copy state in listproduct( state not allowed to change) 
+      let p: Product=(<ProductsActions>action).payload;
+      let index=state.products.indexOf(p);
+      let productslist=[...state.products];
+      productslist.splice(index,1);
+      return {...state, dataState:ProductsStateEnum.LOADED, products:productslist}
+    case ProductsActionsTypes.DELETE_PRODUCT_ERROR:
       return {...state, dataState:ProductsStateEnum.ERROR, errorMessage:(<ProductsActions>action).payload}
     default : return {...state}
   }

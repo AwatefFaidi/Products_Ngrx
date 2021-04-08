@@ -18,9 +18,14 @@ export enum ProductsActionsTypes{
      SEARCH_PRODUCTS_ERROR="[Products] Search products Error",
 
      /* Select products*/
-     SELECT_PRODUCT="[Products] Select product",
-     SELECT_PRODUCT_SUCCESS="[Products] Select product Success",
-     SELECT_PRODUCT_ERROR="[Products] Select product Error",
+     SELECT_PRODUCT="[Product] Select product",
+     SELECT_PRODUCT_SUCCESS="[Product] Select product Success",
+     SELECT_PRODUCT_ERROR="[Product] Select product Error",
+
+     /* Delete products*/
+     DELETE_PRODUCT="[Product] Delete product",
+     DELETE_PRODUCT_SUCCESS="[Product] Delete product Success",
+     DELETE_PRODUCT_ERROR="[Product] Delete product Error",
   }
 
   /* Get all Products Actions*/
@@ -104,10 +109,31 @@ export enum ProductsActionsTypes{
     }
 
   }
+   /* Delete Product Actions*/
+
+   export class DeleteProductAction implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.DELETE_PRODUCT;
+    constructor(public payload:Product) {
+    }
+  }
+
+  export class DeleteProductActionSuccess implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.DELETE_PRODUCT_SUCCESS;
+    constructor(public payload:Product) {
+      }
+  }
+
+  export class DeleteProductActionError implements Action{
+    type: ProductsActionsTypes=ProductsActionsTypes.DELETE_PRODUCT_ERROR;
+    constructor(public payload:string) {
+    }
+
+  }
 
   export type ProductsActions=
-      GetAllProductsAction | GetAllProductsActionSuccess | GetAllProductsActionError
-      | GetSelectedProductsAction | GetSelectedProductsActionSuccess | GetSelectedProductsActionError|
+      GetAllProductsAction | GetAllProductsActionSuccess | GetAllProductsActionError |
+      GetSelectedProductsAction | GetSelectedProductsActionSuccess | GetSelectedProductsActionError|
       SearchProductsAction |SearchProductsActionSuccess |SearchProductsActionError |
-      SelectProductAction | SelectProductActionSuccess |SelectProductActionError
+      SelectProductAction | SelectProductActionSuccess |SelectProductActionError |
+      DeleteProductAction | DeleteProductActionSuccess |DeleteProductActionError
   ;
