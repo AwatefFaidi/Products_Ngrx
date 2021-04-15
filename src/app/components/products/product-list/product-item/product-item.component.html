@@ -4,7 +4,7 @@
   <td>{{product.price}}</td>
   <td>{{product.quantity}}</td>
   <td>
-    <span [ngClass]="!product.selected?'fa fa-check-circle text-sucess ':''"></span>
+    <span [ngClass]="!product.selected?'fa fa-check-circle text-success ':''"></span>
   </td>
   <td>{{product.available}}</td>
   <td>
@@ -16,6 +16,11 @@
   <td>
     <button class="btn btn-danger" (click)="onDelete(product)">
       <span class="fa fa-trash-o"></span>
+    </button>
+  </td>
+  <td>
+    <button class="btn btn-success" (click)="onEdit(product)">
+      <span class="fa fa-edit"></span>
     </button>
   </td>
 </tr>

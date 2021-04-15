@@ -15,6 +15,7 @@ import { productsReducer } from './ngrx/products.reducer';
 import { ProductsEffects } from './ngrx/products.effects';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { NewProductComponent } from './components/products/new-product/new-product.component';
+import { EditProductComponent } from './components/products/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NewProductComponent } from './components/products/new-product/new-produ
     ProductListComponent,
     ProductItemComponent,
     ProductsNavBarComponent,
-    NewProductComponent
+    NewProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

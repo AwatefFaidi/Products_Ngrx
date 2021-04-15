@@ -3,7 +3,7 @@
     {
       "id": 3,
       "name": "Smartphone",
-      "price": 2000,
+      "price": "2000",
       "quantity": 32,
       "selected": false,
       "available": true
@@ -12,9 +12,17 @@
       "name": "hh",
       "price": "10000",
       "quantity": "10",
-      "selected": true,
+      "selected": false,
       "available": true,
       "id": 4
+    },
+    {
+      "name": "printer",
+      "price": "5000",
+      "quantity": "10",
+      "selected": true,
+      "available": true,
+      "id": 5
     }
   ]
 }
